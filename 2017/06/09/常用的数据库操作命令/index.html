@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/09/常用的数据库操作命令/index.html">
 <meta property="og:site_name" content="洋洋">
 <meta property="og:description" content="常见的关系数据库:   数据库系统 所属公司     Oracle Oracle (甲骨文)   DB2 IBM   SQL Server MS   MySQL AB–&amp;gt;SUN–&amp;gt;Oracle     Oracle:运行稳定，可移植性高，功能齐全，性能超群！适用于大型企业领域，但是价格昂贵。 DB2：速度快、可靠性好，适于海量数据，恢复性极强。适用于大中型企业领域，但是价格昂贵。 SQ">
-<meta property="og:updated_time" content="2017-09-19T02:42:17.000Z">
+<meta property="og:updated_time" content="2017-09-20T04:04:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见的数据库操作命令">
 <meta name="twitter:description" content="常见的关系数据库:   数据库系统 所属公司     Oracle Oracle (甲骨文)   DB2 IBM   SQL Server MS   MySQL AB–&amp;gt;SUN–&amp;gt;Oracle     Oracle:运行稳定，可移植性高，功能齐全，性能超群！适用于大型企业领域，但是价格昂贵。 DB2：速度快、可靠性好，适于海量数据，恢复性极强。适用于大中型企业领域，但是价格昂贵。 SQ">
@@ -365,62 +365,63 @@
 <li><p>查看数据库:</p>
 </li>
 </ul>
-<pre><code>```
+<pre><code>```sql
 show databases;
 ```
 </code></pre><ul>
 <li>选择数据库:</li>
 </ul>
-<pre><code>```
+<pre><code>```sql
 use database_name;
 ```
 </code></pre><ul>
 <li>创建数据库:</li>
 </ul>
-<pre><code>```
+<pre><code>```sql
 create database database_name;
 ```
 </code></pre><ul>
 <li><p>删除数据库:</p>
-<pre><code>drop database database_name;
-</code></pre><h2 id="数据库常用类型"><a href="#数据库常用类型" class="headerlink" title="数据库常用类型"></a>数据库常用类型</h2><p>与java对比：</p>
+<pre><code class="sql"><span class="keyword">drop</span> <span class="keyword">database</span> database_name;
+</code></pre>
+<h2 id="数据库常用类型"><a href="#数据库常用类型" class="headerlink" title="数据库常用类型"></a>数据库常用类型</h2><p>与java对比：</p>
 </li>
 </ul>
 <table>
 <thead>
 <tr>
-<th>Java</th>
+<th style="text-align:center">Java</th>
 <th style="text-align:center">MySQL</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>int</td>
+<td style="text-align:center">int</td>
 <td style="text-align:center">INT</td>
 </tr>
 <tr>
-<td>long</td>
+<td style="text-align:center">long</td>
 <td style="text-align:center">BIGINT</td>
 </tr>
 <tr>
-<td>BigDecimal</td>
+<td style="text-align:center">BigDecimal</td>
 <td style="text-align:center">DECIMAL</td>
 </tr>
 <tr>
-<td>boolean</td>
+<td style="text-align:center">boolean</td>
 <td style="text-align:center">BIT</td>
 </tr>
 <tr>
-<td>Date/Calender</td>
+<td style="text-align:center">Date/Calender</td>
 <td style="text-align:center">DATE/DATETIME/TIMESTAMP</td>
 </tr>
 <tr>
-<td>String</td>
+<td style="text-align:center">String</td>
 <td style="text-align:center">VARCHAR</td>
 </tr>
 </tbody>
 </table>
-<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> CREATE TABLE table_name (         column_name   列的类型  [约束] ,         column_name   列的类型  [约束],         column_name   列的类型  [约束],         ...);</div></pre></td></tr></table></figure>
+<h2 id="基本SQL操作"><a href="#基本SQL操作" class="headerlink" title="基本SQL操作"></a>基本SQL操作</h2><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (         column_name   列的类型  [约束] ,         column_name   列的类型  [约束],         column_name   列的类型  [约束],         ...);</div></pre></td></tr></table></figure>
 <h4 id="表的约束-针对于某一列"><a href="#表的约束-针对于某一列" class="headerlink" title="表的约束(针对于某一列):"></a>表的约束(针对于某一列):</h4><ol>
 <li>非空约束：NOT NULL(NK)，不允许某列的内容为空。</li>
 <li>设置列的默认值：DEFAULT。</li>
@@ -429,16 +430,22 @@ create database database_name;
 <li>主键自增长：AUTO_INCREMENT，从1开始，步长为1。(MySQL特有)</li>
 <li>外键约束：FOREIGN KEY(FK)，A表中的外键列的值必须参照于B表中的某一列(B表主键)-明天讲解。</li>
 </ol>
-<h4 id="插入语句-一次插入操作只插入一行"><a href="#插入语句-一次插入操作只插入一行" class="headerlink" title="插入语句:一次插入操作只插入一行."></a>插入语句:一次插入操作只插入一行.</h4><pre><code>INSERT [INTO]  table_name (column1,column2,column3...)
-VALUES  (value1,value2,value3...);
-</code></pre><h4 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作:"></a>删除操作:</h4><pre><code>DELETE  FROM    tablename [WHERE condition];
+<h4 id="插入语句-一次插入操作只插入一行"><a href="#插入语句-一次插入操作只插入一行" class="headerlink" title="插入语句:一次插入操作只插入一行."></a>插入语句:一次插入操作只插入一行.</h4><pre><code class="sql"><span class="keyword">INSERT</span> [<span class="keyword">INTO</span>]  table_name (column1,column2,column3...)
+<span class="keyword">VALUES</span>  (value1,value2,value3...);
+</code></pre>
+<h4 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作:"></a>删除操作:</h4><pre><code class="sql"><span class="keyword">DELETE</span>  <span class="keyword">FROM</span>    tablename [<span class="keyword">WHERE</span> condition];
 如果省略了where子句，则全表的数据都会被删除
-</code></pre><h4 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作:"></a>更新操作:</h4><pre><code>UPDATE  table_name
-SET  columnName = value [, columnName = value, ...]
-[WHERE  condition];
+</code></pre>
+<h4 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作:"></a>更新操作:</h4><pre><code class="sql"><span class="keyword">UPDATE</span>  table_name
+<span class="keyword">SET</span>  columnName = <span class="keyword">value</span> [, columnName = <span class="keyword">value</span>, ...]
+[<span class="keyword">WHERE</span>  condition];
 如果省略了where子句，则全表的数据都会被修改。
 注意:没有FROM
 </code></pre>
+<h4 id="简单的查询操作"><a href="#简单的查询操作" class="headerlink" title="简单的查询操作:"></a>简单的查询操作:</h4><pre><code class="sql"><span class="keyword">SELECT</span> {*/column_name, ...}
+<span class="keyword">FROM</span> table_name
+</code></pre>
+
       
     </div>
 
@@ -474,8 +481,8 @@ SET  columnName = value [, columnName = value, ...]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/09/iOS开发-APP重新签名/" rel="next" title="iOS开发-APP重新签名">
-                <i class="fa fa-chevron-left"></i> iOS开发-APP重新签名
+              <a href="/2017/06/08/数据库查询操作命令/" rel="next" title="数据库查询操作命令">
+                <i class="fa fa-chevron-left"></i> 数据库查询操作命令
               </a>
             
           </div>
@@ -554,7 +561,7 @@ SET  columnName = value [, columnName = value, ...]
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -593,7 +600,7 @@ SET  columnName = value [, columnName = value, ...]
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的关系数据库"><span class="nav-number">1.</span> <span class="nav-text">常见的关系数据库:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库操作命令"><span class="nav-number">2.</span> <span class="nav-text">数据库操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库常用类型"><span class="nav-number">3.</span> <span class="nav-text">数据库常用类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">4.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表"><span class="nav-number">4.0.1.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表的约束-针对于某一列"><span class="nav-number">4.0.2.</span> <span class="nav-text">表的约束(针对于某一列):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入语句-一次插入操作只插入一行"><span class="nav-number">4.0.3.</span> <span class="nav-text">插入语句:一次插入操作只插入一行.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除操作"><span class="nav-number">4.0.4.</span> <span class="nav-text">删除操作:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新操作"><span class="nav-number">4.0.5.</span> <span class="nav-text">更新操作:</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的关系数据库"><span class="nav-number">1.</span> <span class="nav-text">常见的关系数据库:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库操作命令"><span class="nav-number">2.</span> <span class="nav-text">数据库操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库常用类型"><span class="nav-number">3.</span> <span class="nav-text">数据库常用类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本SQL操作"><span class="nav-number">4.</span> <span class="nav-text">基本SQL操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表"><span class="nav-number">4.0.1.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表的约束-针对于某一列"><span class="nav-number">4.0.2.</span> <span class="nav-text">表的约束(针对于某一列):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入语句-一次插入操作只插入一行"><span class="nav-number">4.0.3.</span> <span class="nav-text">插入语句:一次插入操作只插入一行.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除操作"><span class="nav-number">4.0.4.</span> <span class="nav-text">删除操作:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新操作"><span class="nav-number">4.0.5.</span> <span class="nav-text">更新操作:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单的查询操作"><span class="nav-number">4.0.6.</span> <span class="nav-text">简单的查询操作:</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
